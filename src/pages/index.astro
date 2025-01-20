@@ -1,0 +1,24 @@
+---
+import Header from '../components/Header.astro';
+import Layout from '../layouts/Layout.astro';
+import Footer from "../components/Footer.astro";
+import Main from "../components/Main.astro";
+
+import articles from "../data/articles.json"
+import ArticlesItem from "../components/ArticleItem.astro";
+---
+
+<Layout>
+    <Header active="home"/>
+    <Main>
+        {articles.map((article) => (
+                <ArticlesItem
+                        slug={article.slug}
+                        thumbnail={article.thumbnail}
+                        title={article.title}
+                        description={article.description}
+                />
+        ))}
+    </Main>
+    <Footer/>
+</Layout>

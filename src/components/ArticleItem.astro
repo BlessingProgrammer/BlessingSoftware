@@ -1,0 +1,20 @@
+---
+interface Props {
+    slug: string;
+    thumbnail: string;
+    title: string;
+    description: string;
+}
+const {slug, thumbnail, title, description} = Astro.props;
+---
+<div class="articles-item">
+    <img src={thumbnail} alt={thumbnail}/>
+    <div class="content">
+        <div>
+            <a href={`/${slug}`}>{title}</a>
+            <p>{description}</p>
+        </div>
+
+        <button><a href={`/${slug}`}>Xem thêm</a></button>
+    </div>
+</div>

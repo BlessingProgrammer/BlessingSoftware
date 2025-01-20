@@ -1,0 +1,27 @@
+---
+import articles from '../data/articles.json';
+import Footer from "../components/Footer.astro";
+import Layout from "../layouts/Layout.astro";
+import Main from "../components/Main.astro";
+import Navbar from "../components/Header.astro";
+
+export async function getStaticPaths() {
+    return articles.map(post => ({
+        params: {slug: post.slug}
+    }));
+}
+
+const {slug} = Astro.params;
+const article = articles.find((post) => post.slug === slug);
+---
+
+<Layout>
+    <Navbar active=""/>
+    <Main>
+        <h1>{article.title}</h1>
+        {article.contents.map((content, index) => (
+                <div class="article-detail" key={index} set:html={content}></div>
+        ))}
+    </Main>
+    <Footer/>
+</Layout>
